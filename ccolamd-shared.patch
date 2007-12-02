@@ -1,0 +1,65 @@
+diff -ur CCOLAMD/Demo/Makefile CCOLAMD-shared/Demo/Makefile
+--- CCOLAMD/Demo/Makefile	2007-12-02 15:48:48.000000000 +0100
++++ CCOLAMD-shared/Demo/Makefile	2007-12-02 15:48:31.000000000 +0100
+@@ -20,12 +20,12 @@
+ dist:
+ 
+ ccolamd_example: ccolamd_example.c library
+-	$(C) -o ccolamd_example ccolamd_example.c ../Lib/libccolamd.a -lm
++	libtool --tag=CC --mode=link $(CC) $(CFLAGS) $(I) -o ccolamd_example ccolamd_example.c ../Lib/libccolamd.la -lm
+ 	- ./ccolamd_example > my_ccolamd_example.out
+ 	- diff ccolamd_example.out my_ccolamd_example.out
+ 
+ ccolamd_l_example: ccolamd_l_example.c library
+-	$(C) -o ccolamd_l_example ccolamd_l_example.c ../Lib/libccolamd.a -lm
++	libtool --tag=CC --mode=link $(CC) $(CFLAGS) $(I) -o ccolamd_l_example ccolamd_l_example.c ../Lib/libccolamd.la -lm
+ 	- ./ccolamd_l_example > my_ccolamd_l_example.out
+ 	- diff ccolamd_example.out my_ccolamd_example.out
+ 
+diff -ur CCOLAMD/Lib/Makefile CCOLAMD-shared/Lib/Makefile
+--- CCOLAMD/Lib/Makefile	2007-12-02 15:48:48.000000000 +0100
++++ CCOLAMD-shared/Lib/Makefile	2007-12-02 15:47:12.000000000 +0100
+@@ -2,7 +2,8 @@
+ # CCOLAMD Makefile
+ #-------------------------------------------------------------------------------
+ 
+-default: libccolamd.a
++default: libccolamd.la
++libdir	:= /usr/lib
+ 
+ include /usr/share/misc/UFconfig.mk
+ 
+@@ -13,15 +14,20 @@
+ SRC = ../Source/ccolamd.c ../Source/ccolamd_global.c
+ 
+ # creates libccolamd.a, a C-callable COLAMD library
+-libccolamd.a:  $(SRC) $(INC)
+-	$(CC) $(CFLAGS) $(I) -c ../Source/ccolamd_global.c
+-	$(CC) $(CFLAGS) $(I) -c ../Source/ccolamd.c
+-	$(CC) $(CFLAGS) $(I) -c ../Source/ccolamd.c -DDLONG -o ccolamd_l.o
+-	$(AR) libccolamd.a ccolamd.o ccolamd_l.o ccolamd_global.o
++libccolamd.a: libccolamd.la
++libccolamd.la:  $(SRC) $(INC)
++	libtool --tag=CC --mode=compile $(CC) $(CFLAGS) $(I) -c ../Source/ccolamd_global.c
++	libtool --tag=CC --mode=compile $(CC) $(CFLAGS) $(I) -c ../Source/ccolamd.c
++	libtool --tag=CC --mode=compile $(CC) $(CFLAGS) $(I) -c ../Source/ccolamd.c -DDLONG -o ccolamd_l.o
++	libtool --tag=CC --mode=link $(CC) -o libccolamd.la -rpath $(libdir) ccolamd.o ccolamd_l.o ccolamd_global.o -lm
++
++install: libccolamd.la
++	install -d $(DESTDIR)$(libdir)
++	libtool --mode=install cp libccolamd.la $(DESTDIR)$(libdir)/libccolamd.la
+ 
+-ccode: libccolamd.a
++ccode: libccolamd.la
+ 
+-library: libccolamd.a
++library: libccolamd.la
+ 
+ clean:
+ 	- $(RM) $(CLEAN)
+@@ -29,4 +35,4 @@
+ purge: distclean
+ 
+ distclean: clean
+-	- $(RM) libccolamd.a
++	- $(RM) libccolamd.la

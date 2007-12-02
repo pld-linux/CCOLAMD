@@ -2,7 +2,7 @@ Summary:	CCOLAMD: column approximate minimum degree
 Summary(pl.UTF-8):	CCOLAMD - przybliżony algorytm minimalnego stopnia dla kolumn
 Name:		ccolamd
 Version:	2.7.1
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Libraries
 Source0:	http://www.cise.ufl.edu/research/sparse/ccolamd/CCOLAMD-%{version}.tar.gz
@@ -71,7 +71,7 @@ Statyczna biblioteka ccolamd.
 %build
 %{__make} \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags}" \
+	CFLAGS="%{rpmcflags} -fPIC" \
 	libdir=%{_libdir}
 
 %install

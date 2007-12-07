@@ -39,29 +39,29 @@ lepsze uporządkowania niż ich odpowiedniki z MATLAB-a: colmmd i
 symmmd.
 
 %package devel
-Summary:	Header files for ccolamd library
-Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki ccolamd
+Summary:	Header files for CCOLAMD library
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki CCOLAMD
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	UFconfig
 
 %description devel
-Header files for ccolamd library.
+Header files for CCOLAMD library.
 
 %description devel -l pl.UTF-8
-Pliki nagłówkowe biblioteki ccolamd.
+Pliki nagłówkowe biblioteki CCOLAMD.
 
 %package static
-Summary:	Static ccolamd library
-Summary(pl.UTF-8):	Statyczna biblioteka ccolamd
+Summary:	Static CCOLAMD library
+Summary(pl.UTF-8):	Statyczna biblioteka CCOLAMD
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
-Static ccolamd library.
+Static CCOLAMD library.
 
 %description static -l pl.UTF-8
-Statyczna biblioteka ccolamd.
+Statyczna biblioteka CCOLAMD.
 
 %prep
 %setup -q -n %{name}

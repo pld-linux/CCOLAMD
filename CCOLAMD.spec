@@ -77,12 +77,13 @@ Statyczna biblioteka ccolamd.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_includedir}/ccolamd
 
 %{__make} -C Lib install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	libdir=%{_libdir}
 
-install -D Include/ccolamd.h $RPM_BUILD_ROOT%{_includedir}/ccolamd.h
+install Include/*.h $RPM_BUILD_ROOT%{_includedir}/ccolamd
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -99,7 +100,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libccolamd.so
 %{_libdir}/libccolamd.la
-%{_includedir}/ccolamd.h
+%{_includedir}/ccolamd
 
 %files static
 %defattr(644,root,root,755)

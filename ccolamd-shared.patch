@@ -6,13 +6,13 @@ diff -ur CCOLAMD/Demo/Makefile CCOLAMD-shared/Demo/Makefile
  
  ccolamd_example: ccolamd_example.c library
 -	$(C) -o ccolamd_example ccolamd_example.c ../Lib/libccolamd.a -lm
-+	libtool --tag=CC --mode=link $(CC) $(CFLAGS) $(I) -o ccolamd_example ccolamd_example.c ../Lib/libccolamd.la -lm
++	libtool --tag=CC --mode=link $(CC) $(LDFLAGS) $(CFLAGS) $(I) -o ccolamd_example ccolamd_example.c ../Lib/libccolamd.la -lm
  	- ./ccolamd_example > my_ccolamd_example.out
  	- diff ccolamd_example.out my_ccolamd_example.out
  
  ccolamd_l_example: ccolamd_l_example.c library
 -	$(C) -o ccolamd_l_example ccolamd_l_example.c ../Lib/libccolamd.a -lm
-+	libtool --tag=CC --mode=link $(CC) $(CFLAGS) $(I) -o ccolamd_l_example ccolamd_l_example.c ../Lib/libccolamd.la -lm
++	libtool --tag=CC --mode=link $(CC) $(LDFLAGS) $(CFLAGS) $(I) -o ccolamd_l_example ccolamd_l_example.c ../Lib/libccolamd.la -lm
  	- ./ccolamd_l_example > my_ccolamd_l_example.out
  	- diff ccolamd_example.out my_ccolamd_example.out
  
@@ -43,7 +43,7 @@ diff -ur CCOLAMD/Lib/Makefile CCOLAMD-shared/Lib/Makefile
 +	libtool --tag=CC --mode=compile $(CC) $(CFLAGS) $(I) -c ../Source/ccolamd_global.c
 +	libtool --tag=CC --mode=compile $(CC) $(CFLAGS) $(I) -c ../Source/ccolamd.c
 +	libtool --tag=CC --mode=compile $(CC) $(CFLAGS) $(I) -c ../Source/ccolamd.c -DDLONG -o ccolamd_l.o
-+	libtool --tag=CC --mode=link $(CC) -o libccolamd.la -rpath $(libdir) ccolamd.o ccolamd_l.o ccolamd_global.o -lm
++	libtool --tag=CC --mode=link $(CC) $(LDFLAGS) -o libccolamd.la -rpath $(libdir) ccolamd.o ccolamd_l.o ccolamd_global.o -lm
 +
 +install: libccolamd.la
 +	install -d $(DESTDIR)$(libdir)

@@ -1,5 +1,5 @@
-Summary:	CCOLAMD: column approximate minimum degree
-Summary(pl.UTF-8):	CCOLAMD - przybliżony algorytm minimalnego stopnia dla kolumn
+Summary:	CCOLAMD: constrained column approximate minimum degree
+Summary(pl.UTF-8):	CCOLAMD - przybliżony ograniczony algorytm minimalnego stopnia dla kolumn
 Name:		CCOLAMD
 Version:	2.7.1
 Release:	2

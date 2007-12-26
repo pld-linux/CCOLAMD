@@ -43,7 +43,7 @@ diff -ur CCOLAMD/Lib/Makefile CCOLAMD-shared/Lib/Makefile
 +	libtool --tag=CC --mode=compile $(CC) $(CFLAGS) $(I) -c ../Source/ccolamd_global.c
 +	libtool --tag=CC --mode=compile $(CC) $(CFLAGS) $(I) -c ../Source/ccolamd.c
 +	libtool --tag=CC --mode=compile $(CC) $(CFLAGS) $(I) -c ../Source/ccolamd.c -DDLONG -o ccolamd_l.o
-+	libtool --tag=CC --mode=link $(CC) $(LDFLAGS) -o libccolamd.la -rpath $(libdir) ccolamd.o ccolamd_l.o ccolamd_global.o -lm
++	libtool --tag=CC --mode=link $(CC) $(LDFLAGS) -o libccolamd.la -rpath $(libdir) ccolamd.lo ccolamd_l.lo ccolamd_global.lo -lm
 +
 +install: libccolamd.la
 +	install -d $(DESTDIR)$(libdir)

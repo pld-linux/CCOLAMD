@@ -67,7 +67,7 @@ Statyczna biblioteka CCOLAMD.
 %build
 %{__make} \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} -fPIC" \
+	CFLAGS="%{rpmcflags}" \
 	LDFLAGS="%{rpmldflags}" \
 	libdir=%{_libdir}
 

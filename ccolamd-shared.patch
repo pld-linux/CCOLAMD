@@ -26,7 +26,7 @@ diff -ur CCOLAMD/Demo/Makefile CCOLAMD-shared/Demo/Makefile
 +default: libccolamd.la
 +libdir	:= /usr/lib
  
- include /usr/share/misc/UFconfig.mk
+ include /usr/share/misc/SuiteSparse_config.mk
  
 @@ -13,16 +14,19 @@
  SRC = ../Source/ccolamd.c ../Source/ccolamd_global.c

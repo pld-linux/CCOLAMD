@@ -1,44 +1,22 @@
---- CCOLAMD/Source/ccolamd.c~	2006-12-13 13:46:38.000000000 +0200
-+++ CCOLAMD/Source/ccolamd.c	2007-03-27 01:17:49.118259378 +0300
-@@ -685,7 +685,7 @@
+--- CCOLAMD/Include/ccolamd.h.orig	2012-05-29 16:54:52.000000000 +0200
++++ CCOLAMD/Include/ccolamd.h	2012-06-27 17:14:53.668746441 +0200
+@@ -112,7 +112,7 @@
+ /* === Prototypes of user-callable routines ================================= */
  /* ========================================================================== */
  
- /* define UF_long */
--#include "UFconfig.h"
-+#include <UFconfig.h>
- 
- #ifdef DLONG
- 
---- CCOLAMD/Include/ccolamd.h~	2006-12-13 13:46:09.000000000 +0200
-+++ CCOLAMD/Include/ccolamd.h	2007-03-27 01:18:06.598650636 +0300
-@@ -139,7 +139,7 @@
- /* ========================================================================== */
- 
- /* define UF_long */
--#include "UFconfig.h"
-+#include <UFconfig.h>
+-#include "SuiteSparse_config.h"
++#include <SuiteSparse_config.h>
  
  size_t ccolamd_recommended	/* returns recommended value of Alen, */
  				/* or 0 if input arguments are erroneous */
---- CCOLAMD/Demo/ccolamd_l_example.c~	2006-12-13 13:47:22.000000000 +0200
-+++ CCOLAMD/Demo/ccolamd_l_example.c	2007-03-27 01:18:17.698899095 +0300
-@@ -44,7 +44,7 @@
- #define B_N 5
- 
- /* define UF_long */
--#include "UFconfig.h"
-+#include <UFconfig.h>
- 
- int main (void)
- {
 --- CCOLAMD/Makefile~	2007-03-27 01:18:43.219470348 +0300
 +++ CCOLAMD/Makefile	2007-03-27 01:18:44.569500568 +0300
 @@ -1,7 +1,7 @@
  
  default: demo
  
--include ../UFconfig/UFconfig.mk
-+include /usr/share/misc/UFconfig.mk
+-include ../SuiteSparse_config/SuiteSparse_config.mk
++include /usr/share/misc/SuiteSparse_config.mk
  
  # Compile all C code, including the C-callable routine and the mexFunctions.
  # Do not the MATLAB interface.
@@ -49,10 +27,10 @@ diff -ur CCOLAMD/Demo/Makefile CCOLAMD.UF/Demo/Makefile
  
  default: ccolamd_example ccolamd_l_example
  
--include ../../UFconfig/UFconfig.mk
-+include /usr/share/misc/UFconfig.mk
+-include ../../SuiteSparse_config/SuiteSparse_config.mk
++include /usr/share/misc/SuiteSparse_config.mk
  
--I = -I../Include -I../../UFconfig
+-I = -I../Include -I../../SuiteSparse_config
 +I = -I../Include
  
  C = $(CC) $(CFLAGS) $(I)
@@ -64,31 +42,13 @@ diff -ur CCOLAMD/Lib/Makefile CCOLAMD.UF/Lib/Makefile
  
  default: libccolamd.a
  
--include ../../UFconfig/UFconfig.mk
-+include /usr/share/misc/UFconfig.mk
+-include ../../SuiteSparse_config/SuiteSparse_config.mk
++include /usr/share/misc/SuiteSparse_config.mk
  
--I = -I../Include -I../../UFconfig
+-I = -I../Include -I../../SuiteSparse_config
 +I = -I../Include
  
--INC = ../Include/ccolamd.h ../../UFconfig/UFconfig.h
-+INC = ../Include/ccolamd.h
- 
- SRC = ../Source/ccolamd.c ../Source/ccolamd_global.c
- 
-diff -ur CCOLAMD/MATLAB/Makefile CCOLAMD.UF/MATLAB/Makefile
---- CCOLAMD/MATLAB/Makefile	2007-05-06 04:41:53.000000000 +0200
-+++ CCOLAMD.UF/MATLAB/Makefile	2007-12-02 15:42:15.000000000 +0100
-@@ -2,11 +2,11 @@
- 
- default: ccolamd2 symamd2
- 
--include ../../UFconfig/UFconfig.mk
-+include /usr/share/misc/UFconfig.mk
- 
--I = -I../../UFconfig -I../Include
-+I = -I../Include
- 
--INC = ../Include/ccolamd.h ../../UFconfig/UFconfig.h
+-INC = ../Include/ccolamd.h ../../SuiteSparse_config/SuiteSparse_config.h
 +INC = ../Include/ccolamd.h
  
  SRC = ../Source/ccolamd.c ../Source/ccolamd_global.c

@@ -20,10 +20,9 @@
  
  # Compile all C code, including the C-callable routine and the mexFunctions.
  # Do not the MATLAB interface.
-diff -ur CCOLAMD/Demo/Makefile CCOLAMD.UF/Demo/Makefile
 --- CCOLAMD/Demo/Makefile	2007-05-05 15:42:44.000000000 +0200
 +++ CCOLAMD.UF/Demo/Makefile	2007-12-02 15:41:19.000000000 +0100
-@@ -4,9 +4,9 @@
+@@ -4,16 +4,15 @@
  
  default: ccolamd_example ccolamd_l_example
  
@@ -33,9 +32,16 @@ diff -ur CCOLAMD/Demo/Makefile CCOLAMD.UF/Demo/Makefile
 -I = -I../Include -I../../SuiteSparse_config
 +I = -I../Include
  
- C = $(CC) $(CFLAGS) $(I)
+ C = $(CC) $(CF) $(I)
  
-diff -ur CCOLAMD/Lib/Makefile CCOLAMD.UF/Lib/Makefile
+-LIB2 = ../../SuiteSparse_config/libsuitesparseconfig.a $(LIB)
++LIB2 = -lsuitesparseconfig $(LIB)
+ 
+ library:
+-	( cd ../../SuiteSparse_config ; $(MAKE) )
+ 	( cd ../Lib ; $(MAKE) )
+ 
+ #------------------------------------------------------------------------------
 --- CCOLAMD/Lib/Makefile	2007-05-05 15:41:47.000000000 +0200
 +++ CCOLAMD.UF/Lib/Makefile	2007-12-02 15:42:02.000000000 +0100
 @@ -4,11 +4,11 @@

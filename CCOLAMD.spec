@@ -2,7 +2,7 @@ Summary:	CCOLAMD: constrained column approximate minimum degree
 Summary(pl.UTF-8):	CCOLAMD - przybliżony ograniczony algorytm minimalnego stopnia dla kolumn
 Name:		CCOLAMD
 Version:	2.9.0
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://www.cise.ufl.edu/research/sparse/ccolamd/%{name}-%{version}.tar.gz
